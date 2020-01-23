@@ -4,7 +4,7 @@ class User < ApplicationRecord
 	before_save :to_lower_case
 
 	validates :name, presence:true, length: { maximum: 10}
-	validates :emails, presence:true, format: { with: VALID_EMAIL_REGEX},
+	validates :email, presence:true, format: { with: VALID_EMAIL_REGEX},
 						uniqueness: {case_sensative: false}
 
 	has_secure_password
@@ -12,6 +12,6 @@ class User < ApplicationRecord
 	private
 
 	def to_lower_case
-		self.emails = emails.downcase
+		self.email = email.downcase
 	end
 end
