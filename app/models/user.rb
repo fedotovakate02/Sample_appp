@@ -4,9 +4,9 @@ class User < ApplicationRecord
 
 	before_save :to_lower_case
 
-	validates :name, presence:true, length: { maximum: 10}
-	validates :email, presence:true, format: { with: VALID_EMAIL_REGEX},
-						uniqueness: {case_sensative: false}
+	#validates :name, presence:true, length: { maximum: 10}
+	#validates :email, presence:true, format: { with: VALID_EMAIL_REGEX},
+						#uniqueness: {case_sensative: false}
 
 	has_secure_password
 
