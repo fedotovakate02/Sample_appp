@@ -2,6 +2,8 @@ class User < ApplicationRecord
 	attr_accessor :remember_token, :activation_token, :reset_token
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
+	has_many :microposts, dependent: :destroy
+
 	before_save :to_lower_case
 	before_create :create_activation_digest
 
@@ -10,6 +12,10 @@ class User < ApplicationRecord
 						#uniqueness: {case_sensative: false}
 
 	has_secure_password
+
+	def feed
+		Micropost.where("user_id = ?", id)
+	end
 
 	def self.new_token
 		SecureRandom.urlsafe_base64
