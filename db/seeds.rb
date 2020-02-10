@@ -15,3 +15,10 @@
 							password: password,
 							password_confirmation: password)
 end
+
+users = User.all
+user = users.first
+following = users[2..11]
+followers = users[3..11]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
